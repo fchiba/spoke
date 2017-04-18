@@ -1,0 +1,51 @@
+<!doctype html5>
+<title>spoke</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<script>
+var erd = 577;
+var pcd = 49;
+
+function draw() {
+	var c = document.getElementById("c");
+	var ctx = c.getContext('2d');
+
+    ctx.beginPath();
+    ctx.arc(300, 300, erd/2, 0, Math.PI*2, true);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(300, 300, pcd/2, 0, Math.PI*2, true);
+    ctx.stroke();
+    for(var i = 0; i < 8; i++) {
+        ctx.beginPath();
+        var rad_in  = Math.PI*2/32 * i*4;
+        var rad_out = Math.PI*2/24 * i*3;
+        ctx.moveTo(Math.cos(rad_in) * pcd/2 + 300, Math.sin(rad_in) * pcd/2 + 300);
+        ctx.lineTo(Math.cos(rad_out) * erd/2 + 300, Math.sin(rad_out) * erd/2 + 300);
+        ctx.stroke();
+    } 
+    ctx.strokeStyle = "rgb(255,0,0)";
+    for(var i = 0; i < 8; i++) {
+        ctx.beginPath();
+        var rad_in  = Math.PI*2/32 * (i*4+1);
+        var rad_out = Math.PI*2/24 * (i*3+5);
+        ctx.moveTo(Math.cos(rad_in) * pcd/2 + 300, Math.sin(rad_in) * pcd/2 + 300);
+        ctx.lineTo(Math.cos(rad_out) * erd/2 + 300, Math.sin(rad_out) * erd/2 + 300);
+        ctx.stroke();
+    } 
+    ctx.strokeStyle = "rgb(0,0,255)";
+    for(var i = 0; i < 8; i++) {
+        ctx.beginPath();
+        var rad_in  = Math.PI*2/32 * (i*4+3);
+        var rad_out = Math.PI*2/24 * (i*3-2);
+        ctx.moveTo(Math.cos(rad_in) * pcd/2 + 300, Math.sin(rad_in) * pcd/2 + 300);
+        ctx.lineTo(Math.cos(rad_out) * erd/2 + 300, Math.sin(rad_out) * erd/2 + 300);
+        ctx.stroke();
+    } 
+}
+window.onload = function() {
+	draw();
+};
+</script>
+<body>
+<canvas id="c" width="600" height="600"></canvas>
+</body>
